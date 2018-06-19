@@ -90,23 +90,9 @@ class BabiQaSentence(problem.Problem):
     return self.babi_subset + '_' + babi_qa._TASKS[self.babi_task_id] + '.vocab'
 
   @property
-  def dataset_splits(self):
-    return [{
-      'split': problem.DatasetSplit.TRAIN,
-      'shards': 1,
-    }, {
-      'split': problem.DatasetSplit.EVAL,
-      'shards': 1,
-    }]
-
-  @property
-  def is_generate_per_split(self):
-    return True
-
-  @property
-  def joint_training(self):
-    # training on data from all tasks.
-    return True
+  def vocab_filename(self):
+      return "vocab.%s.%s" % (self.dataset_filename(),
+                              text_problems.VocabType.TOKEN)
 
   @property
   def vocab_type(self):
