@@ -22,7 +22,7 @@ from tensor2tensor.models.research import universal_transformer_util
 import tensorflow as tf
 
 FLAGS = tf.flags.FLAGS
-
+PAD = text_encoder.PAD_ID
 
 # ============================================================================
 # Transformer-base models
@@ -554,7 +554,7 @@ class BabiTransformer(transformer.Transformer):
 
 
       pad_mask = tf.to_float(tf.not_equal(original_input,
-                             tf.constant(babi_qa.PAD, dtype=tf.int32)))
+                             tf.constant(PAD, dtype=tf.int32)))
       input_masked = input * pad_mask
       positional_mask = tf.get_variable(name='positional_mask',
         shape=[max_sentence_length, embedding_size])
