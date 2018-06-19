@@ -93,7 +93,11 @@ class BabiQaSentence(problem.Problem):
   def vocab_filename(self):
       return "vocab.%s.%s" % (self.dataset_filename(),
                               text_problems.VocabType.TOKEN)
-
+  @property
+  def oov_token(self):
+    """Out of vocabulary token. Only for VocabType.TOKEN."""
+    return None
+  
   @property
   def vocab_type(self):
     return text_problems.VocabType.TOKEN
