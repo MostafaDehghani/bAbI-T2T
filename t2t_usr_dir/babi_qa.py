@@ -44,7 +44,7 @@ PAD = text_encoder.PAD_ID
 REGISTERED_PROBLEMS = []
 
 
-class BabiQaSentence(babi_qa.BabiQa):
+class BabiQaSentence(problem.Problem):
   """Base class for bAbi question answering problems."""
   def __init__(self, *args, **kwargs):
 
@@ -66,6 +66,61 @@ class BabiQaSentence(babi_qa.BabiQa):
     assert not self._was_reversed, 'This problem is not reversible!'
     assert not self._was_copy, 'This problem is not copyable!'
 
+  @property
+  def babi_subset(self):
+    """The subset of dataset.
+    This should be one of the following:
+    {'en', 'en-10k', 'shuffled', 'shuffled-10k'}
+    """
+    raise NotImplementedError
+
+  @property
+  def babi_task_id(self):
+    """The id of the babi task.
+    This should be one of the following:
+    {'qa0', 'qa1', 'qa1',...'q20'}, where qa0 means all tasks together.
+    """
+    raise NotImplementedError
+
+  def dataset_filename(self):
+    return 'babi_qa_' + self.babi_subset + '_' + babi_qa._TASKS[self.babi_task_id]
+
+  @property
+  def vocab_file(self):
+    return self.babi_subset + '_' + babi_qa._TASKS[self.babi_task_id] + '.vocab'
+
+  @property
+  def dataset_splits(self):
+    return [{
+      'split': problem.DatasetSplit.TRAIN,
+      'shards': 1,
+    }, {
+      'split': problem.DatasetSplit.EVAL,
+      'shards': 1,
+    }]
+
+  @property
+  def is_generate_per_split(self):
+    return True
+
+  @property
+  def joint_training(self):
+    # training on data from all tasks.
+    return True
+
+  @property
+  def vocab_type(self):
+    return text_problems.VocabType.TOKEN
+
+  def get_labels_encoder(self, data_dir):
+    """Builds encoder for the given class labels.
+    Args:
+      data_dir: data directory
+    Returns:
+      An encoder for class labels.
+    """
+    label_filepath = os.path.join(data_dir, self.vocab_filename)
+    return text_encoder.TokenTextEncoder(label_filepath)
 
   @property
   def dataset_splits(self):
@@ -100,6 +155,21 @@ class BabiQaSentence(babi_qa.BabiQa):
   @property
   def num_dev_shards(self):
     return self.dataset_splits[1]["shards"]
+
+
+  def generate_text_for_vocab(self, data_dir, tmp_dir):
+    # NOTE: for babi, we create the vocab from both train and test data.
+    for dataset_split in [
+        problem.DatasetSplit.TRAIN, problem.DatasetSplit.EVAL
+    ]:
+
+      for example in babi_qa._babi_parser(tmp_dir, self.babi_task_id, self.babi_subset,
+                                  dataset_split, self.joint_training):
+
+        context = ' '.join(example[babi_qa.FeatureNames.STORY])
+        yield ' '.join(context.split())
+        yield ' '.join(example[babi_qa.FeatureNames.QUESTION].split())
+        yield example[babi_qa.FeatureNames.ANSWER]
 
 
   def generate_data(self, data_dir, tmp_dir, unused_task_id):
@@ -319,6 +389,13 @@ class BabiQaSentence(babi_qa.BabiQa):
       registry.Modalities.SYMBOL, question_vocab_size)}
     num_classes = self._encoders['targets'].vocab_size
     p.target_modality = (registry.Modalities.CLASS_LABEL, num_classes)
+
+  def eval_metrics(self):
+    """Specify the set of evaluation metrics for this problem.
+    Returns:
+      List of evaluation metrics of interest.
+    """
+    return [metrics.Metrics.ACC]
 
 def _problems_to_register():
   """Problems for which we want to create datasets.
