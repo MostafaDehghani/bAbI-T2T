@@ -639,7 +639,7 @@ class BabiTransformer(transformer.Transformer):
 # R-Transformer
 # ============================================================================
 @registry.register_model
-class BabiRTransformer(BabiTransformer):
+class BabiUniversalTransformer(BabiTransformer):
 
 
   def encode(self, stories, questions, target_space, hparams,
