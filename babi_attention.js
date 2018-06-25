@@ -8,7 +8,7 @@ function($, d3) {
 var attention = window.attention;
 
 const TEXT_SIZE = 15;
-const BOXWIDTH = TEXT_SIZE * 30;
+const BOXWIDTH = TEXT_SIZE * 20;
 const BOXHEIGHT = TEXT_SIZE * 1.5;
 const WIDTH = 2000;
 const HEIGHT = attention.inp_inp.bot_text.length * BOXHEIGHT * 2 + 100;

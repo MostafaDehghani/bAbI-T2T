@@ -171,7 +171,7 @@ class BabiTransformer(transformer.Transformer):
     result = initial_output
     # tensor of shape [batch_size, time, 1, 1, vocab_size]
     logits = tf.zeros((batch_size, 0, 1, 1, target_modality.top_dimensionality))
-    if not context.in_eager_mode():
+    if not tf.contrib.eager.in_eager_mode():
       logits.set_shape([None, None, None, None, None])
     loss = 0.0
 
@@ -730,7 +730,7 @@ class BabiUniversalTransformer(BabiTransformer):
     return encoder_output
 
 
-  def _greedy_infer(self, features, decode_length):
+  def _greedy_infer(self, features, decode_length, use_tpu):
     """Fast version of greedy decoding."""
     return self._slow_greedy_infer(features, decode_length)
 
