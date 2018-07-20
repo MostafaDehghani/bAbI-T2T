@@ -139,20 +139,17 @@ Visualization of the attention distributions, when encoding the question: “Whe
 
 Step#1
 
-![Step 1](https://raw.githubusercontent.com/MostafaDehghani/bAbI-T2T/master/figs/e3-step1.png)
+<img src="https://raw.githubusercontent.com/MostafaDehghani/bAbI-T2T/master/figs/e3-step1.png" width="500">
 
 Step#2
 
-![Step 2](https://raw.githubusercontent.com/MostafaDehghani/bAbI-T2T/master/figs/e3-step2.png)
-
+<img src="https://raw.githubusercontent.com/MostafaDehghani/bAbI-T2T/master/figs/e3-step2.png" width="500">
 Step#3
 
-![Step 3](https://raw.githubusercontent.com/MostafaDehghani/bAbI-T2T/master/figs/e3-step3.png)
-
+<img src="https://raw.githubusercontent.com/MostafaDehghani/bAbI-T2T/master/figs/e3-step3.png" width="500">
 Step#4
 
-![Step 4](https://raw.githubusercontent.com/MostafaDehghani/bAbI-T2T/master/figs/e3-step4.png)
-
+<img src="https://raw.githubusercontent.com/MostafaDehghani/bAbI-T2T/master/figs/e3-step4.png" width="500">
 
 
 * Second, with ACT we observe that the average
