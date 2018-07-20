@@ -139,19 +139,19 @@ Visualization of the attention distributions, when encoding the question: “Whe
 
 Step#1
 
-![alt text](https://raw.githubusercontent.com/MostafaDehghani/bAbI-T2T/blob/master/figs/e3-step1.png)
+![Step 1](https://raw.githubusercontent.com/MostafaDehghani/bAbI-T2T/master/figs/e3-step1.png)
 
 Step#2
 
-![alt text](https://raw.githubusercontent.com/MostafaDehghani/bAbI-T2T/blob/master/figs/e3-step2.png)
+![Step 2](https://raw.githubusercontent.com/MostafaDehghani/bAbI-T2T/master/figs/e3-step2.png)
 
 Step#3
 
-![alt text](https://raw.githubusercontent.com/MostafaDehghani/bAbI-T2T/blob/master/figs/e3-step3.png)
+![Step 3](https://raw.githubusercontent.com/MostafaDehghani/bAbI-T2T/master/figs/e3-step3.png)
 
 Step#4
 
-![alt text](https://raw.githubusercontent.com/MostafaDehghani/bAbI-T2T/blob/master/figs/e3-step4.png)
+![Step 4](https://raw.githubusercontent.com/MostafaDehghani/bAbI-T2T/master/figs/e3-step4.png)
 
 
 
@@ -176,7 +176,7 @@ setting, with more irrelevant facts which the model
 seems to successfully learn to ignore in this way.
 
 
-![alt text](https://raw.githubusercontent.com/MostafaDehghani/bAbI-T2T/blob/master/figs/task3_example_ponder.png)
+![alt text](https://raw.githubusercontent.com/MostafaDehghani/bAbI-T2T/master/figs/task3_example_ponder.png)
 
 The above figure illustrates the ponder time of
 Adaptive Universal Transformer for encoding
