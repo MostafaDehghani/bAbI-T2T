@@ -112,6 +112,13 @@ class BabiQaSentence(problem.Problem):
     label_filepath = os.path.join(data_dir, self.vocab_filename)
     return text_encoder.TokenTextEncoder(label_filepath)
 
+
+  def get_or_create_vocab(self, data_dir):
+    vocab_filename = os.path.join(data_dir, self.vocab_filename)
+    encoder = text_encoder.TokenTextEncoder(vocab_filename,
+                                            replace_oov=self.oov_token)
+    return encoder
+
   @property
   def dataset_splits(self):
     return [{'split': problem.DatasetSplit.TRAIN, 'shards': 1, },
@@ -162,7 +169,8 @@ class BabiQaSentence(problem.Problem):
         yield example[babi_qa.FeatureNames.ANSWER]
 
 
-  def generate_data(self, data_dir, tmp_dir, unused_task_id):
+
+  def generate_data(self, data_dir, tmp_dir, task_id=-1):
     """Generates training/dev data.
 
 
@@ -199,7 +207,7 @@ class BabiQaSentence(problem.Problem):
                                              problem.DatasetSplit.EVAL,
                                              self.joint_training)
 
-    encoder = self.get_or_create_vocab(data_dir, tmp_dir)
+    encoder = self.get_or_create_vocab(data_dir)
     label_encoder = self.get_labels_encoder(data_dir)
 
     train_parsed_processed, dev_parsed_processed = (
