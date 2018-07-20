@@ -41,7 +41,7 @@ the bAbI data for task 1 using the 10k subset:
 
 ```
 t2t-datagen \
-  --t2t_usr_dir=~/bAbi-T2T/t2t_usr_dir \
+  --t2t_usr_dir=~/bAbI-T2T/t2t_usr_dir \
   --tmp_dir=~/babi_data/tmp \
   --data_dir=~/babi_data/data \
   --problem=babi_qa_sentence_task1_10k
@@ -66,7 +66,7 @@ train with one of these models, you can use this command:
 
 ```
 t2t-trainer \
-  --t2t_usr_dir=~/bAbi-T2T/t2t_usr_dir \
+  --t2t_usr_dir=~/bAbI-T2T/t2t_usr_dir \
   --tmp_dir=~/babi_data/tmp \
   --data_dir=~/babi_data/data \
   --output_dir=~/babi_data/outpu \
