@@ -33,9 +33,15 @@ installed. Clone the repository in your home directory:
 ```
 cd ~
 git clone https://github.com/MostafaDehghani/bAbI-T2T.git
-mkdir babi_data
+mkdir ~/babi_data
 ```
 
+You can download the bAbi data and put it in a temp folder:
+```
+mkdir ~/babi_data/tmp
+cd ~/babi_data/tmp
+wget http://www.thespermwhale.com/jaseweston/babi/tasks_1-20_v1-2.tar.gz
+```
 Then simply run the following commands to generate
 the bAbI data for task 1 using the 10k subset:
 
