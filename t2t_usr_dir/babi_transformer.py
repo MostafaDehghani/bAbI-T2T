@@ -607,9 +607,6 @@ class BabiTransformer(transformer.Transformer):
     questions = features.get(babi_qa.FeatureNames.QUESTION)
     target_space = features["target_space_id"]
 
-    print("storiesquestionsstoriesquestions")
-    print(stories)
-    print(questions)
     with tf.variable_scope('input'):
       # [batch_size, story_len, embed_sz]
       encoded_story = self.inputs_encoding(input=stories,
