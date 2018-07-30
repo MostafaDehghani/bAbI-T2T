@@ -53,9 +53,8 @@ t2t-datagen \
   --problem=babi_qa_sentence_task1_10k
 ```
 
-You can choose the "task number" from ```[0, 20]``` and the "subset" from
-```{1k,10k}``` when setting the ```--problem```. Using "```0```" as the
-task number (i.e. ```babi_qa_sentence_task0_10k```)
+You can choose the "task number" from ```[1, 20]``` and the "subset" from
+```{1k,10k}``` when setting the ```--problem```. Using "```all_tasks```" (i.e. ```babi_qa_sentence_all_tasks_10k```)
 gathers test data from all tasks in a single test set in your
 experiment.
 Note that this is the join training setup
