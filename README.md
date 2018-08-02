@@ -193,4 +193,6 @@ model) on bAbI tasks is mainly due to the fact that
 the Universal Transformer is super data efficient model
 and is able to support very small datasets.
 
-
+## TODO:
+* Fix the notebook for act pondertime visualization (change based on the new namings, etc.)
+* Fix the codes for decoding from the baby_transformer and baby_universal_transformer model (```decode_from_babi_dataset```,  ```log_decode_results```, etc. at the end of ```baby_transformer.py```.)
