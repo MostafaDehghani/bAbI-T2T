@@ -17,7 +17,7 @@ fact-level (sentence-level) embedding of the input data as it is used in [this
 paper](https://arxiv.org/abs/1807.03819).
 
 ```
-@article{tensor2tensor,
+@article{Universal Transformers,
   author    = {Mostafa Dehghani and Stephan Gouws and
   Oriol Vinyals and Jakob Uszkoreit and Łukasz Kaiser},
   title     = {Universal Transformers},
