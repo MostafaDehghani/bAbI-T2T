@@ -75,7 +75,7 @@ t2t-trainer \
   --t2t_usr_dir=~/bAbI-T2T/t2t_usr_dir \
   --tmp_dir=~/babi_data/tmp \
   --data_dir=~/babi_data/data \
-  --output_dir=~/babi_data/outpu \
+  --output_dir=~/babi_data/output \
   --problem=babi_qa_sentence_task1_10k \
   --model=babi_transformer \
   --hparams_set=transformer_tiny \
