@@ -17,7 +17,7 @@ fact-level (sentence-level) embedding of the input data as it is used in [this
 paper](https://arxiv.org/abs/1807.03819).
 
 ```
-@article{tensor2tensor,
+@article{Universal Transformers,
   author    = {Mostafa Dehghani and Stephan Gouws and
   Oriol Vinyals and Jakob Uszkoreit and Łukasz Kaiser},
   title     = {Universal Transformers},
@@ -75,7 +75,7 @@ t2t-trainer \
   --t2t_usr_dir=~/bAbI-T2T/t2t_usr_dir \
   --tmp_dir=~/babi_data/tmp \
   --data_dir=~/babi_data/data \
-  --output_dir=~/babi_data/outpu \
+  --output_dir=~/babi_data/output \
   --problem=babi_qa_sentence_task1_10k \
   --model=babi_transformer \
   --hparams_set=transformer_tiny \
