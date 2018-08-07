@@ -86,6 +86,22 @@ Or you can use ```--model=babi_transformer``` and ```--hparams_set=universal_tra
 to train the fantastic universal transformer on bAbI data. You can change the ```--hparams_set``` to
 try different variants of the Universal Transformer, like Adaptive Universal Transoformer.
 
+In order to run the model on test data and decode from the model, 
+you can run the following commands. 
+```
+chmod +x ~/bAbI-T2T/t2t-babi_decoder
+~/bAbI-T2T/t2t-babi_decoder \
+	--t2t_usr_dir=~/bAbI-T2T/t2t_usr_dir \
+	--tmp_dir=~/babi_data/tmp \
+	--data_dir=~/babi_data/data \
+	--output_dir=~/babi_data/output_ut \
+	--problem=babi_qa_sentence_task1_10k \
+	--model=babi_universal_transformer \
+	--hparams_set=universal_transformer_tiny \
+	--decode_to_file=decoded_ut.txt
+```
+This generates a text file for you, containing the records from test dataset 
+with story, question, gold target, and the prediction by the model.
 
 ### Universal Transformer on bAbI tasks
 Universal Transformer achieves a new state of the art
@@ -194,5 +210,4 @@ the Universal Transformer is super data efficient model
 and is able to support very small datasets.
 
 ## TODO:
-* Fix the notebook for act pondertime visualization (change based on the new namings, etc.)
-* Fix the codes for decoding from the baby_transformer and baby_universal_transformer model (```decode_from_babi_dataset```,  ```log_decode_results```, etc. at the end of ```baby_transformer.py```.)
+* Fix and clean the notebook for act pondertime visualization (change based on the new namings, etc.)

@@ -1,0 +1,15 @@
+#!/usr/bin/env python
+"""t2t-babi_decoder."""
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+from t2t_usr_dir import babi_transformer_decoder
+import tensorflow as tf
+
+def main(argv):
+	babi_transformer_decoder.main(argv)
+
+
+if __name__ == "__main__":
+	tf.app.run()
