@@ -29,6 +29,7 @@ from tensor2tensor.data_generators import problem
 from tensor2tensor.data_generators import text_encoder
 from tensor2tensor.data_generators import text_problems
 from tensor2tensor.utils import metrics
+from tensor2tensor.layers import modalities
 from tensor2tensor.utils import registry
 from tensor2tensor.data_generators import babi_qa
 
@@ -380,13 +381,15 @@ class BabiQaSentence(problem.Problem):
 
     story_vocab_size = self._encoders[babi_qa.FeatureNames.STORY].vocab_size
     question_vocab_size = self._encoders[babi_qa.FeatureNames.QUESTION].vocab_size
-
-    p.input_modality = {
-      babi_qa.FeatureNames.STORY: (registry.Modalities.SYMBOL, story_vocab_size),
-      babi_qa.FeatureNames.QUESTION: (
-      registry.Modalities.SYMBOL, question_vocab_size)}
     num_classes = self._encoders['targets'].vocab_size
-    p.target_modality = (registry.Modalities.CLASS_LABEL, num_classes)
+
+    p.modality = {babi_qa.FeatureNames.STORY: modalities.SymbolModality,
+                  babi_qa.FeatureNames.QUESTION: modalities.SymbolModality,
+                  "targets": modalities.ClassLabelModality}
+
+    p.vocab_size = {babi_qa.FeatureNames.STORY: story_vocab_size,
+                    babi_qa.FeatureNames.QUESTION: question_vocab_size,
+                    "targets": num_classes}
 
   def eval_metrics(self):
     """Specify the set of evaluation metrics for this problem.

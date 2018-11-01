@@ -126,7 +126,7 @@ class BabiTransformer(transformer.Transformer):
 				features[babi_qa.FeatureNames.QUESTION], 2)
 
 		targets_old = features.get("targets", None)
-		target_modality = self._problem_hparams.target_modality
+		target_modality = self._problem_hparams.modality.get("targets")
 
 		def infer_step(recent_output, recent_logits, unused_loss):
 			"""Inference step."""
@@ -170,7 +170,7 @@ class BabiTransformer(transformer.Transformer):
 		# input shape, so we confuse it about the input shape.
 		initial_output = tf.slice(initial_output, [0, 0, 0, 0],
 		                          common_layers.shape_list(initial_output))
-		target_modality = self._problem_hparams.target_modality
+		target_modality = self._problem_hparams.modality.get("targets")
 		if target_modality.is_class_modality:
 			decode_length = 1
 		else:
@@ -279,7 +279,7 @@ class BabiTransformer(transformer.Transformer):
 			# it has shape [batch_size] and contains floats between 0 and
 			# source_length.
 			if self._problem_hparams:
-				modality = self._problem_hparams.target_modality
+				modality = self._problem_hparams.modality.get("targets")
 				if modality.top_is_pointwise:
 					return tf.squeeze(logits, axis=[1, 2, 3])
 			# -1 due to the pad above.
@@ -323,7 +323,7 @@ class BabiTransformer(transformer.Transformer):
 				features[babi_qa.FeatureNames.QUESTION],
 				[s[0] * s[1], s[2], s[3], s[4]])
 
-		target_modality = self._problem_hparams.target_modality
+		target_modality = self._problem_hparams.modality.get("targets")
 		vocab_size = target_modality.top_dimensionality
 		# Setting decode length to input length + decode_length
 		decode_length = tf.constant(decode_length)
